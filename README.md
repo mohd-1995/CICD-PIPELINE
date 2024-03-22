@@ -1,5 +1,5 @@
 # DevOps CI/CD Pipeline with Terraform, SonarQube, and AWS
-
+[Live website](https://www.moesportfolio.com/)
 ## Overview
 This repository contains the infrastructure as code (IaC) for a complete DevOps CI/CD pipeline, leveraging various tools such as Terraform, SonarQube, Aqua Trivy, and AWS services. The primary goal is to facilitate consistent and secure deployment of static websites on AWS S3 with Docker container orchestration via EC2.
 
@@ -12,7 +12,7 @@ The pipeline integrates several DevOps tools and practices to create a streamlin
 - **Containerization**: Docker to containerize applications, ensuring consistent environments from development to production.
 - **Hosting**: Static website hosting on AWS S3, with an EC2 instance to run Docker containers for applications.
 
-![CI/CD Pipeline Architecture](aws-jenkins.jpg)
+![CI/CD Pipeline Architecture](aws-cicd-pipeline.jpg)
 
 ## Features
 - **Automated Workflows**: Fully automated pipeline from code push to deployment, including build, test, and deploy stages.
@@ -61,3 +61,19 @@ State the type of license this project is released under.
 Credit any third-party resources or contributors.
 
 ---
+
+
+
+Designed and created a portfolio website, implemented Docker for consistent environment setup and GitHub Actions for automated CI/CD, ensuring seamless updates and functionality.
+
+Live website
+
+Terraform
+Infrastructure as Code:
+Setting Up AWS with Terraform
+Using Terraform for setting up AWS infrastructure was both challenging and rewarding. It allowed me to define my infrastructure in code form, making it easy to track. I used Terraform scripts to create an EC2 instance, which serves as the backbone of my website hosting.
+
+Features of the AWS Setup
+In AWS, I meticulously configured an auto-scaling group to ensure that the website could handle varying loads by automatically adjusting resources. I also utilised two availability zones for increased reliability. The load balancer was key in managing incoming traffic efficiently, while the public subnets and an internet gateway were crucial for connecting my website to the wider internet. This robust setup provided a reliable and scalable foundation for my website.
+
+AWS Infrastructure Diagram
