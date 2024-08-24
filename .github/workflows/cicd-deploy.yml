@@ -1,0 +1,108 @@
+permissions: write-all
+
+name: Build, Push Docker Image, and Deploy with Pre-Deployment Security Scan and tfsec Analysis
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-push-docker:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the code
+        uses: actions/checkout@v3
+
+      - name: Log in to Docker Hub
+        run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
+
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v2
+        with:
+            context: . 
+            file: ./Dockerfile
+            push: true
+            tags: mohd1995/cicd-pipeline:latest
+          
+  deploy-infrastructure:
+    needs: build-and-push-docker
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Pull Latest Docker Image
+        run: docker pull mohd1995/cicd-pipeline:latest
+
+      - name: Install Trivy
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y wget apt-transport-https gnupg lsb-release
+          wget -qO - https://aquasecurity.github.io/trivy-repo/deb/public.key | sudo apt-key add -
+          echo deb https://aquasecurity.github.io/trivy-repo/deb $(lsb_release -sc) main | sudo tee -a /etc/apt/sources.list.d/trivy.list
+          sudo apt-get update
+          sudo apt-get install trivy
+      - name: Run Trivy vulnerability scanner on filesystem and save output
+        run: |
+          trivy filesystem . > trivy-results.log
+      
+      - name: Run Trivy Vulnerability scanner in fs mode
+        uses: aquasecurity/trivy-action@master
+        with:
+          scan-type: 'fs'
+          scan-ref: '.'
+          trivy-config: CICD-deploy.yml
+
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: eu-west-2
+      
+      - name: Upload Trivy scan results to S3
+        run: |
+          aws s3 cp trivy-results.log s3://git-moe-aws/trivy-${{ github.run_id }}.json --debug
+      - name: Set up Terraform
+        uses: hashicorp/setup-terraform@v1
+        with:
+          terraform_version: 1.6.2
+
+      - name: Terraform Init
+        run: terraform init
+        working-directory: ./Infrastructure
+
+      - name: Terraform Validate
+        run: terraform validate
+        working-directory: ./Infrastructure
+
+      - name: Install tfsec
+        run: |
+          wget https://github.com/aquasecurity/tfsec/releases/download/v1.0.0/tfsec-linux-amd64
+          chmod +x tfsec-linux-amd64
+          sudo mv tfsec-linux-amd64 /usr/local/bin/tfsec
+      
+      - name: Run tfsec and capture output
+        run: |
+          mkdir -p ./results
+          tfsec ./Infrastructure --soft-fail > ./results/results.txt
+      - name: Install AWS CLI
+        run: sudo apt-get install awscli
+
+      - name: Upload tfsec results to S3
+        run: |
+          aws s3 cp ./results/results.txt s3://git-moe-aws/tfsec-results-${{ github.run_id }}.txt
+      - name: Terraform Plan
+        run: terraform plan
+        working-directory: ./Infrastructure
+
+      - name: Terraform Apply
+        run: terraform apply -auto-approve
+        working-directory: ./Infrastructure
+      
+      - name: Terraform Destroy
+        run: terraform destroy -auto-approve
+        working-directory: ./Infrastructure
+
+#terraform complete
