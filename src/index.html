@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Moe's Personal Portfolio</title>
+  <link rel="stylesheet" type="text/css" href="index.css">
+
+  <!-- box icons links -->
+  <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
+
+  <!-- remix icons link -->
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+
+  <!-- google fonts link -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Lato:ital@0;1&family=Roboto+Mono&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+</head>
+<body>
+  <!-- header -->
+  <header>
+    <a href="#" class="logo">Developer<span>MoE</span></a>
+    <div class="bx bx-menu" id="menu-icon"></div>
+    <ul class="navlist">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#portfolio">Portfolio</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <div class="top-btnn">
+      <a href="#" class="h-btn">Contact Me</a>
+    </div>
+  </header>
+
+  <!-- hero section -->
+  <section>
+    <div class="main-content">
+      <h4>Hi, There!</h4>
+      <h1>I am <span>Mohammed Balouch</span></h1>
+      <p>Welcome to Moe's DevOps Journey! Thank you for visiting my website, where the fascinating world of DevOps unfolds.
+        Embark on a learning adventure as we explore the intersection of development and operations, discovering tools, practices, and 
+        insights that empower seamless collaboration and efficient software delivery. Whether you're a novice or a seasoned professional,
+         join me on this exciting expedition into the realm of DevOps. Happy learning!
+      </p>
+      <div class="social">
+        <a href="https://www.linkedin.com/in/mohammed-balouch-b79457254/"><i class="ri-linkedin-fill"></i></a>
+        <a href="https://github.com/mohd-1995"><i class="ri-github-fill"></i></a>
+        <a href="https://www.instagram.com/"><i class="ri-instagram-line"></i></a>
+      </div>
+    </div
+  </section>
+
+  <section>
+    <div class="about-me">
+      <img src="images/me.jpg">
+    </div>
+  </section>
+
+
+  <!-- services -->
+  <section class="services" id="services">
+    <div class="center-text" data-aos="fade-in-up">
+      <h2>My <span>Services</span></h2>
+    </div>
+    <div class="services-content">
+      <div class="box">
+        <a href="#"><i class="ri-linkedin-fill"></i></a>
+        <h3>Project 1</h3>
+        <p>This was my first IaC project where i created a simple one tier infrastructure using Terraform.
+          This was my first time creating AWS structure using code. I deployed AWS resources and an EC2 instance that you can SSH into to have your own redeployable environment.
+        </p>
+        <a href="https://github.com/mohd-1995/SSH-TO-EC2">
+          Click Me!!
+          <i class="ri-arrow-right-line"></i>
+        </a>
+      </div>
+
+      <div class="box">
+        <a href="#"><i class="ri-instagram-line"></i></a>
+        <h3>Project 2</h3>
+        <p>Designed and implemented a cloud-based architecture integrating AWS S3 for storage, 
+          API Gateway as the intermediary, and Lambda for serverless computing.
+           The system efficiently handles user requests, processes data, and dynamically scales, demonstrating 
+           expertise in creating robust, scalable cloud solutions.
+        </p>
+        <!-- github link 1 -->
+        <a href="https://github.com/mohd-1995/serverless-app">
+          Click Me!!
+          <i class="ri-arrow-right-line"></i>
+        </a>
+      </div>
+
+      <div class="box">
+        <a href="#"><i class="ri-github-fill"></i></a>
+        <h3>Project 3</h3>
+        <p>This repository contains the Terraform scripts for provisioning and managing a AWS infrastructure. The infrastructure is defined as code, allowing for version control, collaboration, and easy reproducibility. I also added a sleep condition where the ec2 automactically gets destroyed 
+          and can be automatically configured to your specification.
+        </p>
+        <!--github 2-->
+        <a href="https://github.com/mohd-1995/Portfolio-TF-Infrastructure">
+          Click Me!!
+          <i class="ri-arrow-right-line"></i>
+        </a>
+      </div>
+
+
+      <div class="box">
+        <a href="#"><i class="ri-github-fill"></i></a>
+        <h3>Project 4</h3>
+        <p>This repository is used to store code to launch my portfolio website using AWS infrastructure and hosting an instance. T
+          his was all automated using terraform. As this was my first CICD project, every git push, creates and pushes an images onto docker hub.</p>
+        <!--github link 3-->
+          <a href="https://github.com/mohd-1995/Portfolio-TF-Infrastructure">
+          Click Me!!
+          <i class="ri-arrow-right-line"></i>
+        </a>
+      </div>
+
+      <div class="box">
+        <a href="#"><i class="ri-github-fill"></i></a>
+        <h3>Project 5</h3>
+        <p>Here, in this slack app I created a slack-app using python and Slack API. I was able to create a python code which could allow me to 
+          conversate with the user. I will be adding this to my website as part of CICD environment.
+        </p>
+        <a href="https://github.com/mohd-1995/MY-SLACK-APP">
+          Click Me!
+          <i class="ri-arrow-right-line"></i>
+        </a>
+      </div>
+
+      <div class="box">
+        <a href="#"><i class="ri-github-fill"></i></a>
+        <h3>Project6</h3>
+        <p>
+          Developed a CI/CD pipeline using Github-Actions, integrated with GitHub for version control, Codacy for code analysis, and Terraform for infrastructure as code, deploying a secure, static website on AWS S3 with Docker containerized applications on EC2,
+           ensuring best practices in DevOps and cloud security.</p>
+        <a href="https://github.com/mohd-1995/CICD-PIPELINE">
+          Click Me!!
+          <i class="ri-arrow-right-line"></i>
+        </a>
+      </div>
+
+    </div>
+  </section>  
+
+  <section class="portfolio" id="portfolio" data-aos="zoom-in-up">
+    <div class="center-text">
+      <h2>My <span>Portfolio</span></h2>
+    </div>
+
+    <div class="Portfolio-center">
+      <div class="row">
+        <img src="img/port-1.jpg" alt="Portfolio Image">
+        <div class="row-text">
+          <h5>Website Design</h5>
+        </div>
+        <div class="row-icon">
+          <i class="ri-github-fill"></i>
+        </div>
+      </div>
+      <h4>DevOPS Projects</h4>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section class="contact" id="contact">
+    <div class="center-text" data-aos="zoom-in-up">
+      <h2>Contact <span>Me</span></h2>
+    </div>
+
+    <div class="contact-form">
+      <form action="">
+        <input type="text" placeholder="Your name" required>
+        <input type="email" placeholder="Email Address" required>
+        <textarea name="" id="" cols="30" rows="10" placeholder="Write Message Here.." required></textarea>
+        <input type="submit" name="" value="Send Message" class="send-btn">
+      </form>
+    </div>
+  </section>
+
+  <div class="footer">
+    <div class="copyright">
+      <p>&copy; 2023 Mohammed Balouch, All rights reserved.</p>
+    </div>
+    <a href="#home" class="scroll-top">
+      <i class="ri-arrow-up-s-fill"></i>
+    </a>
+  </div>
+</body>
+</html>
