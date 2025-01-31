@@ -74,8 +74,8 @@ module "asg" {
   source = "./modules/autoscaling"
 
   launch_configuration_name_prefix = "web-launch-"
-  image_id                         = "ami-09d6bbc1af02c2ca1"
-  instance_type                    = "t2.micro"
+  image_id                         = "ami-0aa9ffd4190a83e11"
+  instance_type                    = "t2.nano"
   security_groups                  = [module.security_group.lb_sg_id]
   key_name                         = "moe-dev"
   iam_instance_profile             = module.sns.iam_instance_profile_name
